@@ -30,3 +30,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+sudo docker-compose up --build -d
+
+
