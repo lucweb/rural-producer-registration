@@ -23,9 +23,22 @@ Antes de começar, certifique-se de ter os seguintes itens instalados em sua má
 ```bash
 git clone https://github.com/username/rural-producer-registration.git
 cd rural-producer-registration
-````
+```
 
-## install, Compile and run the project
+## Crie um arquivo .env com as variaveis
+
+```bash
+
+# Exemplo
+$ DB_HOST=postgres
+$ DB_PORT=5432
+$ DB_USERNAME=postgress
+$ DB_PASSWORD=abcd1234
+$ DB_NAME=rural_producer
+$ NODE_ENV=development
+```
+
+## Instalar, Compilar e Executar
 
 ```bash
 # install
@@ -41,20 +54,17 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Run tests
+## Rodar Tests
 
 ```bash
 # unit tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
 # test coverage
 $ npm run test:cov
 ```
 
-## install, Compile and run the project
+## Instalar, Compilar e Executar em Dev ou Prod 
 
 ```bash
 $ sudo docker-compose up --build -d
