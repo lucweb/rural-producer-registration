@@ -8,7 +8,7 @@ export class Harvest {
   id: string;
 
   @Column()
-  nome: string;
+  name: string;
 
   @Column()
   year: number;
@@ -17,14 +17,14 @@ export class Harvest {
   @JoinColumn({ name: 'rural_property_id' })
   ruralProperty: RuralProperty;
 
-  @OneToMany(() => PlantedCulture, (culture) => culture.harvests, { 
-    onDelete: 'CASCADE', 
+  @OneToMany(() => PlantedCulture, (culture) => culture.harvests, {
+    onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
-    eager: true 
+    eager: true
   })
   cultures: PlantedCulture[];
 
-  @Column()
+  @Column({ default: 0 })
   totalArea: number;
 
   @CreateDateColumn()

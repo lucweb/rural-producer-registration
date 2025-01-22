@@ -2,6 +2,14 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
+
+  producer = 100;
+  property = 100;
+  harvest = 100;
+  dashboard = 100;
+  swagger = 80;
+  test = 85;
+
   init(): string {
     const info = `
       <!DOCTYPE html>
@@ -24,7 +32,7 @@ export class AppService {
           }
           .container {
             text-align: left;
-            max-width: 600px;
+            max-width: 750px;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -57,33 +65,39 @@ export class AppService {
           }
           .progress {
             width: 100%;
-            height: 20px;
+            height: 10px;
             background-color: #e0e0e0;
             border-radius: 10px;
             overflow: hidden;
+            font-size:9px
           }
           .progress-bar {
             height: 100%;
             background-color: #4CAF50;
             width: 70%; 
             text-align: center;
-            line-height: 20px;
             color: white;
             font-weight: bold;
             border-radius: 10px;
           }
 
-          .progress-bar-99{
-            width: 99%; 
+          .progress-bar-${this.producer}{
+            width: ${this.producer}%; 
           }
-          .progress-bar-10{
-            width: 10%; 
+          .progress-bar-${this.property}{
+            width: ${this.property}%; 
           }
-          .progress-bar-30{
-            width: 30%; 
+          .progress-bar-${this.harvest}{
+            width: ${this.harvest}%; 
           }
-          .progress-bar-80{
-            width: 80%; 
+          .progress-bar-${this.dashboard}{
+            width: ${this.dashboard}%; 
+          }
+          .progress-bar-${this.test}{
+            width: ${this.test}%; 
+          }
+          .progress-bar-${this.swagger}}{
+            width: ${this.swagger}}%; 
           }
 
         </style>
@@ -99,35 +113,36 @@ export class AppService {
             <li><strong>Registro de Safras e Culturas:</strong> Adicione múltiplas safras e culturas por propriedade.</li>
             <li><strong>Dashboard:</strong> Obtenha relatórios consolidados com gráficos de uso do solo, culturas plantadas e dados por estado.</li>
           </ul>
-          <p style="font-size:1.25em;" >Documentação completa disponível em <a href="/docs">/docs</a>.</p>
+          <p style="font-size:1.25em;" >Documentação completa disponível em <a href="/docs" _target="black">/docs</a>.</p>
 
+         Repositório: <a href="https://github.com/lucweb/rural-producer-registration" target="_black">https://github.com/lucweb/rural-producer-registration</a>
 
           <div class="progress-container">
           <p><strong>Percentual de desenvolvimento:</strong></p>
             <label>Cadastro de Produtores:</label>
             <div class="progress"  style="margin:5px 0">
-              <div class="progress-bar progress-bar-99">99%</div>
+              <div class="progress-bar progress-bar-${this.producer}">${this.producer}%</div>
             </div>
             
             <label>Gestão de Propriedades:</label>
             <div class="progress"  style="margin:5px 0">
-              <div class="progress-bar progress-bar-99">99%</div>
+              <div class="progress-bar progress-bar-${this.property}">${this.property}%</div>
             </div>
             <label>Registro de Safras e Culturas:</label>
             <div class="progress"  style="margin:5px 0">
-              <div class="progress-bar progress-bar-99">99%</div>
+              <div class="progress-bar progress-bar-${this.harvest}">${this.harvest}%</div>
             </div>
             <label>Dashboard:</label>
             <div class="progress"  style="margin:5px 0">
-              <div class="progress-bar progress-bar-10">10%</div>
+              <div class="progress-bar progress-bar-${this.dashboard}">${this.dashboard}%</div>
             </div>
             <label>Tests Unitários e Integrados:</label>
             <div class="progress"  style="margin:5px 0">
-              <div class="progress-bar progress-bar-30">30%</div>
+              <div class="progress-bar progress-bar-${this.test}">${this.test}%</div>
             </div>
             <label>OpenAPI - Swagger:</label>
             <div class="progress"  style="margin:5px 0">
-              <div class="progress-bar progress-bar-80">30%</div>
+              <div class="progress-bar progress-bar-${this.swagger}">${this.swagger}%</div>
             </div>
           </div>
         </div>

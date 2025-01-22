@@ -5,11 +5,15 @@ import { RuralProducer } from '../../entity/rural-producer.entity';
 import { RuralProperty } from '../../entity/rural-property.entity';
 import { CreateRuralProducerDto } from '../../dto/create-producer.dto';
 import { RuralProducerService } from '../../sevices/rural-producer.service';
+import { RuralPropertyService } from '../../sevices/rural-property.service';
+import { HarvestService } from '../../sevices/harvest.service';
+import { PlantedCultureService } from '../../sevices/planted-culture.service';
+import { Harvest } from '../../entity/harvest.entity';
+import { PlantedCulture } from '../../entity/planted-culture.entity';
 
 describe('RuralProducerService (Unit)', () => {
   let service: RuralProducerService;
   let producerRepository: jest.Mocked<Repository<RuralProducer>>;
-  let propertyRepository: jest.Mocked<Repository<RuralProperty>>;
 
   const mockQueryRunner = {
     manager: {
@@ -44,13 +48,24 @@ describe('RuralProducerService (Unit)', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         RuralProducerService,
+        RuralPropertyService,
+        HarvestService,
+        PlantedCultureService,
         {
           provide: getRepositoryToken(RuralProducer),
           useValue: mockProducerRepository,
         },
         {
           provide: getRepositoryToken(RuralProperty),
-          useValue: propertyRepository, 
+          useClass: Repository,
+        },
+        {
+          provide: getRepositoryToken(Harvest),
+          useClass: Repository,
+        },
+        {
+          provide: getRepositoryToken(PlantedCulture),
+          useClass: Repository,
         },
       ],
     }).compile();
@@ -62,7 +77,7 @@ describe('RuralProducerService (Unit)', () => {
   it('should create a rural producer', async () => {
     const createDto: CreateRuralProducerDto = {
       name: 'Test Producer',
-      cpfCnpj: '12345678901',
+      cpfCnpj: '877.106.720-51',
       ruralProperties: [],
     };
 
@@ -76,12 +91,12 @@ describe('RuralProducerService (Unit)', () => {
   it('should throw an error for duplicate CPF/CNPJ', async () => {
     producerRepository.findOne.mockResolvedValue({
       id: '1',
-      cpfCnpj: '12345678901', 
+      cpfCnpj: '877.106.720-51', 
     } as any);
 
     const createDto: CreateRuralProducerDto = {
       name: 'Duplicate Producer',
-      cpfCnpj: '12345678901',
+      cpfCnpj: '877.106.720-51',
       ruralProperties: [],
     };
 

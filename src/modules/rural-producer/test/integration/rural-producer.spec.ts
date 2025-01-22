@@ -6,8 +6,11 @@ import { Harvest } from '../../entity/harvest.entity';
 import { PlantedCulture } from '../../entity/planted-culture.entity';
 import { CreateRuralProducerDto } from '../../dto/create-producer.dto';
 import { RuralProducerService } from '../../sevices/rural-producer.service';
+import { HarvestService } from '../../sevices/harvest.service';
+import { PlantedCultureService } from '../../sevices/planted-culture.service';
+import { RuralPropertyService } from '../../sevices/rural-property.service';
 
-describe('RuralProducerService (Integration)', () => {
+describe('Rural Producer Service (Integration)', () => {
   let service: RuralProducerService;
   let module: TestingModule;
 
@@ -25,9 +28,19 @@ describe('RuralProducerService (Integration)', () => {
           ],
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([RuralProducer, RuralProperty]),
+        TypeOrmModule.forFeature([
+          RuralProducer,
+          RuralProperty,
+          Harvest,
+          PlantedCulture,
+        ]),
       ],
-      providers: [RuralProducerService],
+      providers: [
+        RuralProducerService,
+        RuralPropertyService,
+        HarvestService,
+        PlantedCultureService,
+      ],
     }).compile();
 
     service = module.get<RuralProducerService>(RuralProducerService);
@@ -40,7 +53,7 @@ describe('RuralProducerService (Integration)', () => {
   it('should create a rural producer', async () => {
     const createDto: CreateRuralProducerDto = {
       name: 'Test Producer',
-      cpfCnpj: '12345678901',
+      cpfCnpj: '274.072.910-39',
       ruralProperties: [
         {
           farmName: 'Test Property',
@@ -53,7 +66,7 @@ describe('RuralProducerService (Integration)', () => {
             {
               year: 2023,
               cultures: [{ name: 'Corn', quantityPlanted: 50 }],
-              nome: '',
+              name: 'test',
               totalArea: 0
             },
           ],
@@ -72,12 +85,24 @@ describe('RuralProducerService (Integration)', () => {
   it('should throw an error for duplicate CPF/CNPJ', async () => {
     const createDto: CreateRuralProducerDto = {
       name: 'Duplicate Producer',
-      cpfCnpj: '12345678901',
+      cpfCnpj: '274.072.910-39',
       ruralProperties: [],
     };
 
-    await expect(service.create(createDto)).rejects.toThrow(
+    await expect(service.create({ ...createDto })).rejects.toThrow(
       'CPF/CNPJ já está em uso',
+    );
+  });
+
+  it('should throw an error for invalid CPF/CNPJ', async () => {
+    const createDto: CreateRuralProducerDto = {
+      name: 'Duplicate Producer',
+      cpfCnpj: '274.072.910-00',
+      ruralProperties: [],
+    };
+
+    await expect(service.create({ ...createDto })).rejects.toThrow(
+      'CPF/CNPJ é inválido',
     );
   });
 });

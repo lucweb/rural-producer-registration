@@ -35,7 +35,7 @@ export class CreateHarvestDto {
     @PropertyNameSwagger(true)
     @IsString()
     @IsNotEmpty()
-    nome: string;
+    name: string;
 
     @PropertyYearSwagger(true)
     @IsNumber()

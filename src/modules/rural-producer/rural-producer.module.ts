@@ -12,6 +12,8 @@ import { RuralPropertyController } from './controllers/rural-property.controller
 import { RuralPropertyService } from './sevices/rural-property.service';
 import { HarvestService } from './sevices/harvest.service';
 import { PlantedCultureService } from './sevices/planted-culture.service';
+import { DashboardController } from './controllers/dashboard.controller';
+import { DashboardService } from './sevices/dashboard.service';
 
 @Module({
     imports: [TypeOrmModule.forFeature([
@@ -25,12 +27,14 @@ import { PlantedCultureService } from './sevices/planted-culture.service';
         RuralPropertyController,
         HarvestController,
         PlantedCultureController,
+        DashboardController,
     ],
     providers: [
         RuralProducerService,
         RuralPropertyService,
         HarvestService,
         PlantedCultureService,
+        DashboardService
     ],
     exports: [RuralProducerService]
 })
