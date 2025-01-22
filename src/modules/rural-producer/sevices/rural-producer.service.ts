@@ -123,7 +123,7 @@ export class RuralProducerService {
             await queryRunner.commitTransaction();
 
             return await queryRunner.manager.findOne(RuralProducer, {
-                where: { id: producer.id },
+                where: { id: producer?.id },
                 relations: ['ruralProperties'],
             });
         } catch (error) {

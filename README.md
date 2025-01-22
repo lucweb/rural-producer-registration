@@ -58,6 +58,9 @@ $ npm run test:cov
 
 ```bash
 $ sudo docker-compose up --build -d
+
+# remove image and container
+$ sudo docker-compose down -v
 ```
 
 

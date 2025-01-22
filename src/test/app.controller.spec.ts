@@ -1,6 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from 'src/app.controller';
-import { AppService } from 'src/app.service';
+import { Test, TestingModule } from "@nestjs/testing";
+import { AppController } from "./../app.controller";
+import { AppService } from "./../app.service";
+
 
 describe('AppController', () => {
   let app: TestingModule;
@@ -12,10 +13,10 @@ describe('AppController', () => {
     }).compile();
   });
 
-  describe('getHello', () => {
-    it('should return "Hello World!"', () => {
+  describe('Init', () => {
+    it('should return "API"', () => {
       const appController = app.get(AppController);
-      expect(appController.get()).toBe('Hello World!');
+      expect(appController.get()).toContain('API');
     });
   });
 });

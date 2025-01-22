@@ -34,7 +34,7 @@ export class AppService {
             font-size: 2rem;
             margin-bottom: 1rem;
             color: #4CAF50;
-            text-align:center;
+            text-align: center;
           }
           p {
             font-size: 1rem;
@@ -52,6 +52,40 @@ export class AppService {
             text-decoration: none;
             font-weight: bold;
           }
+          .progress-container {
+            margin-top: 20px;
+          }
+          .progress {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+          }
+          .progress-bar {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 70%; 
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+          }
+
+          .progress-bar-99{
+            width: 99%; 
+          }
+          .progress-bar-10{
+            width: 10%; 
+          }
+          .progress-bar-30{
+            width: 30%; 
+          }
+          .progress-bar-80{
+            width: 80%; 
+          }
+
         </style>
       </head>
       <body>
@@ -65,7 +99,37 @@ export class AppService {
             <li><strong>Registro de Safras e Culturas:</strong> Adicione múltiplas safras e culturas por propriedade.</li>
             <li><strong>Dashboard:</strong> Obtenha relatórios consolidados com gráficos de uso do solo, culturas plantadas e dados por estado.</li>
           </ul>
-          <p>Documentação completa disponível em <a href="/docs">/docs</a>.</p>
+          <p style="font-size:1.25em;" >Documentação completa disponível em <a href="/docs">/docs</a>.</p>
+
+
+          <div class="progress-container">
+          <p><strong>Percentual de desenvolvimento:</strong></p>
+            <label>Cadastro de Produtores:</label>
+            <div class="progress"  style="margin:5px 0">
+              <div class="progress-bar progress-bar-99">99%</div>
+            </div>
+            
+            <label>Gestão de Propriedades:</label>
+            <div class="progress"  style="margin:5px 0">
+              <div class="progress-bar progress-bar-99">99%</div>
+            </div>
+            <label>Registro de Safras e Culturas:</label>
+            <div class="progress"  style="margin:5px 0">
+              <div class="progress-bar progress-bar-99">99%</div>
+            </div>
+            <label>Dashboard:</label>
+            <div class="progress"  style="margin:5px 0">
+              <div class="progress-bar progress-bar-10">10%</div>
+            </div>
+            <label>Tests Unitários e Integrados:</label>
+            <div class="progress"  style="margin:5px 0">
+              <div class="progress-bar progress-bar-30">30%</div>
+            </div>
+            <label>OpenAPI - Swagger:</label>
+            <div class="progress"  style="margin:5px 0">
+              <div class="progress-bar progress-bar-80">30%</div>
+            </div>
+          </div>
         </div>
       </body>
       </html>
