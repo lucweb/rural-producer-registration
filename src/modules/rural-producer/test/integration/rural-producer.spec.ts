@@ -57,11 +57,11 @@ describe('Rural Producer Service (Integration)', () => {
       ruralProperties: [
         {
           farmName: 'Test Property',
-          agriculturalArea: 100,
-          city: '',
-          state: '',
-          totalArea: 0,
-          vegetationArea: 0,
+          agriculturalArea: 50,
+          city: 'goiania',
+          state: 'go',
+          totalArea: 160,
+          vegetationArea: 100,
           harvests: [
             {
               year: 2023,
