@@ -44,6 +44,9 @@ export class RuralPropertyService {
         );
 
         for (const property of ruralProperties) {
+
+            this.validateFarmAreas(property);
+
             const { id: propertyId, harvests, ...propertyData } = property;
 
             let ruralProperty: RuralProperty;
